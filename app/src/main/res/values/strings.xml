@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Choi.VN</string>
+
+    <string name="title_section1">Chơi</string>
+    <string name="title_section2">Kiếm điểm</string>
+    <string name="title_section3">Đổi thưởng</string>
+    <string name="title_section4">Tài khoản</string>
+    <string name="title_section5">Nhiều hơn..</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="game_action_play">Chơi</string>
+    <string name="game_action_download">Đang tải</string>
+    <string name="game_action_install">Cài đặt</string>
+
+    <string name="game_size">Dung lượng</string>
+    <string name="game_download">Lượt tải</string>
+    <string name="game_rating">Đánh giá</string>
+    <string name="game_desc">Mô tả</string>
+    <string name="game_screenshot">Screenshots</string>
+    <string name="game_type">Thể loại</string>
+    <string name="game_coin">GP</string>
+
+    <string name="message_unknow">Chưa rõ</string>
+    <string name="message_get_giftcode">NHẬN</string>
+    <string name="message_free">MIỄN PHÍ</string>
+    <string name="message_gift_remain">Đã phát</string>
+    <string name="message_gift_end">ĐÃ KẾT THÚC</string>
+    <string name="message_error">Lỗi</string>
+
+    <string name="mission_point">Điểm</string>
+    <string name="mission_type">Thể loại</string>
+    <string name="mission_type_install">Cài đặt</string>
+    <string name="mission_type_like">Like</string>
+    <string name="mission_type_share">Chia sẻ</string>
+    <string name="mission_share_count">Lượt chia sẻ</string>
+    <string name="mission_like_count">Lượt thích</string>
+    <string name="mission_install_count">Lượt tải</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">User name</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_username">This user name is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="sdk_loading"	>Loading..</string>
+    <string name="sdk_cancel"	>Cancel</string>
+    <string name="sdk_waiting"	>Wait please..</string>
+    <string name="sdk_ok"		>OK</string>
+    <!--
+    String resource for login
+    -->
+    <string name="sdk_login"					>Login</string>
+    <string name="sdk_login_require"			>You must login first</string>
+    <string name="sdk_login_last_state_messge"	>Quick login with account</string>
+    <string name="sdk_login_welcome"			>Welcome</string>
+    <string name="sdk_login_error_unknow"		>Unknow login error</string>
+    <string name="sdk_login_error_loading"		>Something go wrong while loading data</string>
+    <string name="sdk_logout"					>Log Out</string>
+    <string name="prompt_email">Email</string>
+    <string name="plus_sign_out">Switch Google+ account</string>
+    <string name="plus_disconnect">Disconnect from Google+</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+
+    <!--
+    String resource for payment
+    -->
+    <string name="sdk_payment_item_not_found"	>Item not found</string>
+    <string name="sdk_payment_fail"				>Payment fail</string>
+    <string name="sdk_payment_cancelled"		>Payment cancelled</string>
+    <string name="sdk_payment"					>Payment</string>
+    <string name="sdk_payment_choice_message"	>Choose best matched with you</string>
+    <string name="sdk_payment_confirm_local"	>Your balance %1$s\n\nItem %2$s\nPrice %3$s</string>
+    <string name="sdk_payment_balace_calculate" >calculating..</string>
+    <string name="sdk_payment_coin"				>GG</string>
+    <string name="sdk_payment_inapp_not_support">Your device do not support IN-APP</string>
+    <string name="sdk_payment_with_momo">Payment with MoMo Wallet</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <!-- facebook app id -->
+    <string name="facebook_app_id">197031730780024</string>
+
+</resources>

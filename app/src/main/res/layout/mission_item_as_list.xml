@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/game_item_image_size"
+    android:padding="8dp"
+    android:orientation="vertical" >
+    <ImageView 
+        android:layout_width="@dimen/game_item_image_size"
+        android:layout_height="@dimen/game_item_image_size"
+        android:id="@+id/game_item_image"
+        android:scaleType="centerCrop"
+        android:background="@drawable/border_dark"
+    	/>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/game_item_image_size"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/game_item_image"
+        android:paddingLeft="8dp"
+        >
+        <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/game_item_title"
+	        android:lines="1"
+	        android:textColor="@color/colorPrimary"
+	        android:textSize="@dimen/text_size_small"
+	        />
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:layout_weight="1"
+	        android:id="@+id/game_item_desc"
+	        android:textSize="@dimen/text_size_extra_micro"
+	        android:textColor="@color/sdk_font_color_dark"
+	        />
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:lines="1"
+	        android:id="@+id/game_item_download_text"
+	        android:textColor="@color/sdk_font_color_dark"
+	        android:textSize="@dimen/text_size_extra_micro"
+	        android:text="Downloaded: 12345"
+	        />
+    </LinearLayout>
+    
+</RelativeLayout>
