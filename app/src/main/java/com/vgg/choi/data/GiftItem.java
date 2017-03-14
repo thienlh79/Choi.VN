@@ -149,7 +149,7 @@ public class GiftItem implements ChoiItem {
             }
         });
 /*
-        SdkHttpHelper.requestApi(url, body, new SdkResultCallback<SdkApiObject>() {
+        SdkHttpHelper.requestApiObject(url, body, new SdkResultCallback<SdkApiObject>() {
 
             @Override
             public void onResult(SdkApiObject result) {

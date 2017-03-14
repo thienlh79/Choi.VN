@@ -6,7 +6,7 @@ import com.vgg.choi.data.GiftItem;
 import com.vgg.choi.data.MissionItem;
 import com.vgg.sdk.ActionCallback;
 import com.vgg.sdk.ApiObject;
-import com.vgg.sdk.HttpRequest;
+import com.vgg.sdk.HttpRequestHelper;
 import com.vgg.sdk.SdkCodeAndMessage;
 
 import okhttp3.FormBody;
@@ -33,7 +33,7 @@ public enum CachedData {
     }
     public synchronized void getGameItems(final ActionCallback<GameItem[]> callback, boolean forceload) {
         if (gameItems == null || forceload) {
-            HttpRequest.requestApi(hostInfo.getGameListUrl(), null, new ActionCallback<ApiObject>() {
+            HttpRequestHelper.requestApiObject(hostInfo.getGameListUrl(), null, new ActionCallback<ApiObject>() {
                 @Override
                 public void onAction(ApiObject action) {
                     if (action != null && action.getCode() == SdkCodeAndMessage.RESULT_SUCCESS) {
@@ -51,7 +51,7 @@ public enum CachedData {
     }
     public synchronized void getEvenItems(final  ActionCallback<MissionItem[]> callback, boolean forceload) {
         if (missionItems == null || forceload) {
-            HttpRequest.requestApi(hostInfo.getMissionListUrl(), null, new ActionCallback<ApiObject>() {
+            HttpRequestHelper.requestApiObject(hostInfo.getMissionListUrl(), null, new ActionCallback<ApiObject>() {
                 @Override
                 public void onAction(ApiObject action) {
                     if (action != null && action.getCode() == SdkCodeAndMessage.RESULT_SUCCESS) {
@@ -68,7 +68,7 @@ public enum CachedData {
     }
     public synchronized void getGiftItems(final ActionCallback<GiftItem[]> callback, boolean forceload) {
         if (giftItems == null || forceload) {
-            HttpRequest.requestApi(hostInfo.getGiftListUrl(), null, new ActionCallback<ApiObject>() {
+            HttpRequestHelper.requestApiObject(hostInfo.getGiftListUrl(), null, new ActionCallback<ApiObject>() {
                 @Override
                 public void onAction(ApiObject action) {
                     if (action != null && action.getCode() == SdkCodeAndMessage.RESULT_SUCCESS) {
@@ -89,7 +89,7 @@ public enum CachedData {
         FormBody body = new FormBody.Builder()
                 .add("giftcode_cate_id", id)
                 .build();
-        HttpRequest.requestApi(url, body, new ActionCallback<ApiObject>() {
+        HttpRequestHelper.requestApiObject(url, body, new ActionCallback<ApiObject>() {
             @Override
             public void onAction(ApiObject action) {
                 if (callback != null) {
@@ -101,7 +101,7 @@ public enum CachedData {
 
     public synchronized void getGameItemDetail(String id, final ActionCallback<ApiObject> callback) {
         String url = hostInfo.getGameDetailUrl() + id;
-        HttpRequest.requestApi(url, null, new ActionCallback<ApiObject>() {
+        HttpRequestHelper.requestApiObject(url, null, new ActionCallback<ApiObject>() {
             @Override
             public void onAction(ApiObject action) {
                 if (callback != null) {
@@ -114,7 +114,7 @@ public enum CachedData {
     public synchronized void getUnreadInfo(String token, final ActionCallback<BadgeInfo> callback, boolean forceLoad) {
         if (badgeInfo == null || forceLoad) {
             String url = hostInfo.getUnreadUrl(token);
-            HttpRequest.requestApi(url, null, new ActionCallback<ApiObject>() {
+            HttpRequestHelper.requestApiObject(url, null, new ActionCallback<ApiObject>() {
                 @Override
                 public void onAction(ApiObject action) {
                     if (action != null && action.getCode() == SdkCodeAndMessage.RESULT_SUCCESS) {
@@ -132,7 +132,7 @@ public enum CachedData {
     }
 
     public synchronized void getMissionDetail(String id, final ActionCallback<MissionItem> callback) {
-        HttpRequest.requestApi(hostInfo.getMissionDetailUrl() + id, null, new ActionCallback<ApiObject>() {
+        HttpRequestHelper.requestApiObject(hostInfo.getMissionDetailUrl() + id, null, new ActionCallback<ApiObject>() {
             @Override
             public void onAction(ApiObject action) {
                 if (action != null && action.getCode() == SdkCodeAndMessage.RESULT_SUCCESS) {

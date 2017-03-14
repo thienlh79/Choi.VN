@@ -284,7 +284,7 @@ public class MissionDetailActivity extends AppCompatActivity {
         FormBody body = new FormBody.Builder()
                 .add("offer_id", mItem.getId())
                 .build();
-        SdkHttpHelper.requestApi(url, body, new SdkResultCallback<SdkApiObject>() {
+        SdkHttpHelper.requestApiObject(url, body, new SdkResultCallback<SdkApiObject>() {
 
             @Override
             public void onResult(SdkApiObject result) {

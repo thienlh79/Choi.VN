@@ -6,10 +6,22 @@ package com.vgg.sdk;
 
 public class SdkHelper {
     public boolean isLogin() {
-        return false;
+        return SdkCore.INSTANCE.isLogin();
     }
 
     public String getAccessToken() {
-        return "";
+        return SdkCore.INSTANCE.getAccessToken();
+    }
+
+    public String getRefreshToken() {
+        return SdkCore.INSTANCE.getRefreshToken();
+    }
+
+    public void login(String userName, String md5pwd, ActionCallback<ApiObject> callback) {
+        SdkCore.INSTANCE.loginViaApi(userName, md5pwd, callback);
+    }
+
+    protected void setConfig(SdkConfig config) {
+        SdkCore.INSTANCE.initialize(config);
     }
 }

@@ -7,13 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.kazan.util.AppsUtils;
 import com.vgg.choi.MainActivity;
 import com.vgg.choi.R;
 import com.vgg.choi.data.host.CachedData;
+import com.vgg.sdk.ActionCallback;
+import com.vgg.sdk.ApiObject;
+import com.vgg.sdk.SdkConfig;
+import com.vgg.sdk.SdkHelper;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -120,6 +127,24 @@ public class LoadingActivity extends AppCompatActivity {
                 doneLoading();
             }
         }, AUTO_HIDE_DELAY_MILLIS);
+        final SdkConfig config = new SdkConfig.Builder()
+                .setAgencyId("1000000")
+                .setClientKey("dca4eec52f0e2d83ae9076c1eb9d1ffd")
+                .setClientSecret("AaUcgFxT/tV70iadsuWlXoTDHLoHx+jNCIj/7BmlijNqWpnokQ5+IA")
+                .setContext(getApplicationContext())
+                .setSandboxMode(true)
+                .build();
+        SdkHelper sdkHelper = new SdkHelper() {
+            {
+                setConfig(config);
+            }
+        };
+        sdkHelper.login("trungdt", AppsUtils.getMD5("trungdt"), new ActionCallback<ApiObject>() {
+            @Override
+            public void onAction(ApiObject action) {
+                Log.d("Login Result", new Gson().toJson(action));
+            }
+        });
     }
 
     @Override

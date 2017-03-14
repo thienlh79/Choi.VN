@@ -22,7 +22,7 @@ import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
 
-public class HttpRequest {
+public class HttpRequestHelper {
 	private static Handler 		mHandler 	= new Handler(Looper.getMainLooper());
 	private static HttpProgressListener mProgressListener;
 	
@@ -62,7 +62,7 @@ public class HttpRequest {
 
 		@Override
 		public void run() {
-			Response response = new com.vgg.sdk.HttpRequest(progressListener).request(url, body);
+			Response response = new HttpRequestHelper(progressListener).request(url, body);
 			DATA result = getData(response, cls);
 			if (result != null && cls != null && ApiObject.class.isAssignableFrom(cls)) {
 				Log.e("Found Api Call", url);
@@ -88,12 +88,12 @@ public class HttpRequest {
 	}
 
 	public static void requestString(String url, RequestBody body, ActionCallback<String> callback) {
-		//new Thread(new HttpRequest<String, SdkResultCallback<String>>(url, body, callback)).start();
+		//new Thread(new HttpRequestHelper<String, SdkResultCallback<String>>(url, body, callback)).start();
 		request(url, body, String.class, callback);
 	}
 	
-	public static void requestApi(String url, RequestBody body, ActionCallback<ApiObject> callback) {
-		//new Thread(new HttpRequest<SdkApiObject, SdkResultCallback<SdkApiObject>>(url, body, SdkApiObject.class, callback)).start();
+	public static void requestApiObject(String url, RequestBody body, ActionCallback<ApiObject> callback) {
+		//new Thread(new HttpRequestHelper<SdkApiObject, SdkResultCallback<SdkApiObject>>(url, body, SdkApiObject.class, callback)).start();
 		request(url, body, ApiObject.class, callback);
 	}
 	
@@ -164,18 +164,18 @@ public class HttpRequest {
 	private OkHttpClient mClient;
 	private HttpProgressListener progressListener;
 	
-	public HttpRequest() {
+	public HttpRequestHelper() {
 		this(null);
 	}
 	
-	public HttpRequest(HttpProgressListener listener) {
+	public HttpRequestHelper(HttpProgressListener listener) {
 		progressListener = listener;
 		if (progressListener == null) {
 			progressListener = new HttpProgressListener() {
 				
 				@Override
 				public void update(long bytesRead, long contentLength, boolean done) {
-					Log.i("HttpRequest", String.format("Total %d, read %d, done %b", bytesRead, contentLength, done));
+					Log.i("HttpRequestHelper", String.format("Total %d, read %d, done %b", bytesRead, contentLength, done));
 					if (mProgressListener != null) {
 						mProgressListener.update(bytesRead, contentLength, done);
 					}
@@ -194,7 +194,7 @@ public class HttpRequest {
 	        .build();
 	}
 	
-	public HttpRequest(String url, RequestBody body, Callback callback) {
+	public HttpRequestHelper(String url, RequestBody body, Callback callback) {
 		this();
 		request(url, body, callback);
 	}
