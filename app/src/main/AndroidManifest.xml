@@ -9,26 +9,32 @@
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="com.vgg.choi.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.vgg.choi.activity.GameDetailActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.GameDetailActivity" />
         <activity
-            android:name="com.vgg.choi.activity.MissionDetailActivity"
+            android:name=".activity.MissionDetailActivity"
             android:label="@string/title_section1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vgg.choi.activity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:name=".activity.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vgg.choi.activity.LoadingActivity"
+            android:name=".activity.LoadingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -38,25 +44,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.facebook.FacebookActivity" >
-        </activity>
+        <activity android:name="com.facebook.FacebookActivity" />
 
         <service
-            android:name="com.vgg.choi.service.ChoiMessagingService"
+            android:name=".service.ChoiMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <provider
-            android:authorities="com.facebook.app.FacebookContentProvider197031730780024"
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider197031730780024"
+            android:exported="true" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name=".activity.TestActivity"
+            android:label="@string/title_activity_test" />
+
+        <service
+            android:name=".service.ChoiInstanceIdService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

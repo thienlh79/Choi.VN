@@ -29,7 +29,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.kazan.util.AppsUtils;
 import com.vgg.choi.R;
+import com.vgg.choi.data.host.CachedData;
+import com.vgg.sdk.ActionCallback;
+import com.vgg.sdk.ApiObject;
+import com.vgg.sdk.SdkCodeAndMessage;
+import com.vgg.sdk.SdkHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -187,14 +193,39 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //mAuthTask = new UserLoginTask(email, password);
+            //mAuthTask.execute((Void) null);
+            new SdkHelper().login(email, AppsUtils.getMD5(password), new ActionCallback<ApiObject>() {
+                @Override
+                public void onAction(ApiObject action) {
+                    if (action != null) {
+                        switch (action.getCode()){
+                            case SdkCodeAndMessage.RESULT_SUCCESS:
+                                finish();
+                                return;
+                            case -53:
+                                showProgress(false);
+                                mPasswordView.setError(action.getMessage());
+                                mPasswordView.requestFocus();
+                                return;
+                            default:
+                                showProgress(false);
+                                mEmailView.setError(action.getMessage());
+                                mEmailView.requestFocus();
+                                return;
+                        }
+                    }
+                    showProgress(false);
+                    mEmailView.setError("Unknown error, try again please!");
+                    mEmailView.requestFocus();
+                }
+            });
         }
     }
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;//email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {

@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 .badgeCount(3)
                 .build();
         int[] iconIds = {
-                R.drawable.game_icon,
-                R.drawable.coin_icon,
-                R.drawable.gift_icon,
-                R.drawable.user_icon
+                R.drawable.choi_game_icon,
+                R.drawable.choi_mission_icon,
+                R.drawable.choi_gift_icon,
+                R.drawable.choi_user_icon
         };
         tabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager) {
             @Override

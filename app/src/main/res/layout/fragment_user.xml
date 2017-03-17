@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:alpha="0.5"
         android:scaleType="centerCrop"
-        android:src="@drawable/loading" />
+        android:src="@drawable/choi_loading" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -92,6 +92,6 @@
         android:textColor="@color/sdk_font_color_light"
 		android:textSize="@dimen/text_size_normal"
 		android:background="@color/colorPrimaryLight"
-        android:text="@string/sdk_login" />
+        android:text="@string/action_sign_in_short" />
 
 </RelativeLayout>

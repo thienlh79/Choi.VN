@@ -1,7 +1,11 @@
 package com.vgg.choi.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import com.kazan.util.AppsUtils;
 import com.vgg.choi.MainActivity;
 import com.vgg.choi.R;
 import com.vgg.choi.data.host.CachedData;
+import com.vgg.choi.service.ChoiInstanceIdService;
 import com.vgg.sdk.ActionCallback;
 import com.vgg.sdk.ApiObject;
 import com.vgg.sdk.SdkConfig;
@@ -37,7 +42,7 @@ public class LoadingActivity extends AppCompatActivity {
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+    private static final int AUTO_HIDE_DELAY_MILLIS = 10000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -102,7 +107,18 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_loading);
+        Intent intent = new Intent(this, ChoiInstanceIdService.class);
+        bindService(intent, new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                Log.d("Service Binding", "ChoiInstanceIdService");
+            }
 
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        }, Context.BIND_AUTO_CREATE);
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
@@ -120,7 +136,6 @@ public class LoadingActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_log).setOnTouchListener(mDelayHideTouchListener);
-        CachedData.INSTANCE.load(true);
         mHideHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -139,12 +154,13 @@ public class LoadingActivity extends AppCompatActivity {
                 setConfig(config);
             }
         };
-        sdkHelper.login("trungdt", AppsUtils.getMD5("trungdt"), new ActionCallback<ApiObject>() {
+        sdkHelper.login("trungdt", AppsUtils.getMD5("trungdt2"), new ActionCallback<ApiObject>() {
             @Override
             public void onAction(ApiObject action) {
                 Log.d("Login Result", new Gson().toJson(action));
             }
         });
+        CachedData.INSTANCE.load(true);
     }
 
     @Override

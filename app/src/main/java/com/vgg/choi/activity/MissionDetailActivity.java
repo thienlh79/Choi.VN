@@ -130,7 +130,7 @@ public class MissionDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!mSdkHelper.isLogin()) {
+                if (mSdkHelper.isLogin()) {
                     loginToFb();
                     return;
                 } else {
@@ -159,6 +159,8 @@ public class MissionDetailActivity extends AppCompatActivity {
         if (AccessToken.getCurrentAccessToken() != null) {
             startMission();
         } else {
+            showToast("Xac nhan tai khoan facebook de lam nhiem vu");
+
             LoginManager.getInstance().registerCallback(fbCallbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess(LoginResult loginResult) {
@@ -321,6 +323,6 @@ public class MissionDetailActivity extends AppCompatActivity {
             mToast.cancel();
         }
         mToast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        mToast.show();;
+        mToast.show();
     }
 }

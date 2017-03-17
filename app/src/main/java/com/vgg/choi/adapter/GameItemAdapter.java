@@ -31,7 +31,7 @@ public class GameItemAdapter extends RecyclerView.Adapter<GameItemAdapter.ViewHo
             image.getLayoutParams().width = metrics.widthPixels;
 
         } else {
-            view = inflater.inflate(R.layout.game_item_as_grid, null);
+            view = inflater.inflate(R.layout.game_item_dark_as_grid, null);
             DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             ImageView thumbsView = (ImageView) view.findViewById(R.id.game_item_image);
             int percent = metrics.widthPixels /100;

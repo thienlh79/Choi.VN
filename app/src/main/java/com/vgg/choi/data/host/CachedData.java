@@ -144,4 +144,12 @@ public enum CachedData {
             }
         });
     }
+    public void saveFirebaseToken(String token) {
+        firebaseToken = token;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+    String firebaseToken;
 }

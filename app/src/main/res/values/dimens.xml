@@ -20,4 +20,6 @@
     <dimen name="tab_height">36dp</dimen>
     <dimen name="tab_image_size">42dp</dimen>
     <dimen name="game_item_image_size">84dp</dimen>
+
+    <dimen name="choi_button_radius">24dp</dimen>
 </resources>
